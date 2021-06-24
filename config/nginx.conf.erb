@@ -12,6 +12,15 @@ http {
 	server {
 		listen <%= ENV["PORT"] %>;
 
+                   location ~ /blog(/.+)$ {
+		    proxy_pass http://blog.herokuapp.com$1;
+		}
+
+		location / {
+		    proxy_pass http://myapp.herokuapp.com;
+		}
+
+
     
 
 		  location ^~ /app/ {
